@@ -17,7 +17,6 @@ Mettre en place un dépôt Git collaboratif minimal pour l'équipe sans fichiers
 4. Chaque membre configure son identité Git (si pas déjà globalement faite)
 5. Vérifier que `main` se récupère et que le projet Godot s'ouvre
 
-echo "- Votre Nom" >> CONTRIBUTEURS.md
 ## Terminal
 
 ```bash
