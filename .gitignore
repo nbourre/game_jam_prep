@@ -1,0 +1,52 @@
+# =============================
+# Godot + Game Jam .gitignore
+# =============================
+# Ignorer les dossiers générés et temporaires de Godot
+.godot/
+.import/
+
+# Presets d'export (générés, régénérables) – commenter si vous voulez les versionner
+export_presets.cfg
+
+# Fichiers de traduction intermédiaires
+*.translation
+*.import
+
+# Mono / C# (si utilisé)
+.mono/
+mono_crash.*.json
+data_*/
+
+# Builds / exports / artefacts
+builds/
+exports/
+*.zip
+*.exe
+*.dmg
+*.app
+*.apk
+
+# Éditeurs / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS / système
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires / swap
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Divers
+# Ajouter ici tout dossier d'assets volumineux généré automatiquement
+# ex: cache_texture/
+
+# ===== Notes =====
+# - Ne PAS ignorer les scènes (.tscn) ni les scripts (.gd) : indispensables.
+# - Vérifier après création du projet que rien d'essentiel n'est listé ici.

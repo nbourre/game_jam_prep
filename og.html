@@ -1,0 +1,306 @@
+<div class="p-4 font-mono text-sm space-y-4"><!----><p class="whitespace-normal break-words">Working together on game development can be incredibly rewarding, but it also comes with unique challenges. Whether you're a duo of friends or part of a larger team, collaborating effectively on Godot projects requires the right tools, workflows, and communication strategies. This guide will help you set up a smooth collaborative environment and avoid common pitfalls that can derail your project.</p>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Why Collaboration Matters in Game Development</h2>
+<p class="whitespace-normal break-words">Game development is inherently complex, involving code, art, audio, design, and more. When multiple people work on the same project simultaneously, the risk of conflicts, overwrites, and lost work increases dramatically. Without proper systems in place, you might find yourself in situations where:</p>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">One person's changes overwrite another's work</li>
+<li class="whitespace-normal break-words">Different versions of the same file exist on different machines</li>
+<li class="whitespace-normal break-words">The project breaks when combining everyone's contributions</li>
+<li class="whitespace-normal break-words">Time is wasted resolving conflicts instead of creating content</li>
+</ul>
+<p class="whitespace-normal break-words">The good news is that these problems are entirely preventable with the right approach.</p>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Setting Up Version Control with Git</h2>
+<p class="whitespace-normal break-words"><strong>Git is absolutely essential</strong> for any collaborative Godot project. It's not optional – it's the foundation that makes everything else possible.</p>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Initial Setup</h3>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Create a Repository</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Use GitHub, GitLab, or any other Git hosting service</li>
+<li class="whitespace-normal break-words">Make sure all team members have access</li>
+<li class="whitespace-normal break-words">Clone the repository to everyone's local machines</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Configure Godot-Specific .gitignore</strong> Create a <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">.gitignore</code> file in your project root with the following content:
+<div class="relative group/copy rounded-lg">
+<div class="sticky opacity-0 group-hover/copy:opacity-100 top-2 py-2 h-12 w-0 float-right">
+<div class="absolute right-0 h-8 px-2 items-center inline-flex">
+<div class="relative">&nbsp;</div>
+</div>
+</div>
+<div class="">
+<pre class="code-block__code !my-0 !rounded-lg !text-sm !leading-relaxed"><code># Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+.mono/
+data_*/
+.tmp/
+
+# OS-specific ignores
+.DS_Store
+Thumbs.db</code></pre>
+</div>
+</div>
+</li>
+<li class="whitespace-normal break-words"><strong>Set Up Git LFS (Large File Storage)</strong> For projects with large assets, consider using Git LFS:
+<div class="relative group/copy rounded-lg">
+<div class="sticky opacity-0 group-hover/copy:opacity-100 top-2 py-2 h-12 w-0 float-right">
+<div class="absolute right-0 h-8 px-2 items-center inline-flex">
+<div class="relative">&nbsp;</div>
+</div>
+</div>
+<div class="text-text-500 text-xs p-3.5 pb-0">bash</div>
+<div class="">
+<pre class="code-block__code !my-0 !rounded-lg !text-sm !leading-relaxed"><code class="language-bash"><span class="token">git</span> lfs track <span class="token">"*.png"</span>
+<span class="token">git</span> lfs track <span class="token">"*.jpg"</span>
+<span class="token">git</span> lfs track <span class="token">"*.ogg"</span>
+<span class="token">git</span> lfs track <span class="token">"*.wav"</span></code></pre>
+</div>
+</div>
+</li>
+</ol>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Daily Workflow</h3>
+<p class="whitespace-normal break-words">Establish a consistent workflow that everyone follows:</p>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Always pull before starting work</strong>: <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">git pull origin main</code></li>
+<li class="whitespace-normal break-words"><strong>Work in feature branches</strong> for significant changes</li>
+<li class="whitespace-normal break-words"><strong>Commit frequently</strong> with descriptive messages</li>
+<li class="whitespace-normal break-words"><strong>Push regularly</strong> to share progress</li>
+<li class="whitespace-normal break-words"><strong>Use pull requests</strong> for code review and discussion</li>
+</ol>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Branch Strategy</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Main branch</strong>: Always stable, ready-to-play version</li>
+<li class="whitespace-normal break-words"><strong>Development branch</strong>: Integration branch for ongoing work</li>
+<li class="whitespace-normal break-words"><strong>Feature branches</strong>: Individual features or systems</li>
+<li class="whitespace-normal break-words"><strong>Hotfix branches</strong>: Quick fixes for critical issues</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Organizing Your Project Structure</h2>
+<p class="whitespace-normal break-words">A well-organized project structure prevents conflicts and makes collaboration smoother.</p>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Recommended Folder Structure</h3>
+<div class="relative group/copy rounded-lg">
+<div class="sticky opacity-0 group-hover/copy:opacity-100 top-2 py-2 h-12 w-0 float-right">
+<div class="absolute right-0 h-8 px-2 items-center inline-flex">
+<div class="relative">&nbsp;</div>
+</div>
+</div>
+<div class="">
+<pre class="code-block__code !my-0 !rounded-lg !text-sm !leading-relaxed"><code>project/
+├── scenes/
+│   ├── characters/
+│   ├── environments/
+│   ├── ui/
+│   ├── gameplay/
+│   └── levels/
+├── scripts/
+│   ├── characters/
+│   ├── systems/
+│   └── utilities/
+├── assets/
+│   ├── graphics/
+│   ├── audio/
+│   └── fonts/
+├── autoload/
+└── data/</code></pre>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Division of Labor</h3>
+<p class="whitespace-normal break-words"><strong>By System:</strong></p>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Player mechanics (Person A)</li>
+<li class="whitespace-normal break-words">Enemy AI (Person B)</li>
+<li class="whitespace-normal break-words">UI systems (Person C)</li>
+<li class="whitespace-normal break-words">Audio management (Person D)</li>
+</ul>
+<p class="whitespace-normal break-words"><strong>By Scene Type:</strong></p>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Character scenes</li>
+<li class="whitespace-normal break-words">Environment scenes</li>
+<li class="whitespace-normal break-words">UI scenes</li>
+<li class="whitespace-normal break-words">Level scenes</li>
+</ul>
+<p class="whitespace-normal break-words"><strong>By Asset Type:</strong></p>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Programming</li>
+<li class="whitespace-normal break-words">Art and animation</li>
+<li class="whitespace-normal break-words">Audio and music</li>
+<li class="whitespace-normal break-words">Level design</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Best Practices for Avoiding Conflicts</h2>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Scene Management</h3>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Use Instancing Over Inheritance</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Create reusable scene components</li>
+<li class="whitespace-normal break-words">Instance rather than inherit when possible</li>
+<li class="whitespace-normal break-words">This reduces dependencies and conflicts</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Atomic Scene Design</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Keep scenes focused on single responsibilities</li>
+<li class="whitespace-normal break-words">Avoid massive, monolithic scenes</li>
+<li class="whitespace-normal break-words">Use child scenes for complex hierarchies</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Separate Concerns</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Keep scripts, scenes, and resources in dedicated folders</li>
+<li class="whitespace-normal break-words">Use consistent naming conventions</li>
+<li class="whitespace-normal break-words">Document dependencies clearly</li>
+</ul>
+</li>
+</ol>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Code Collaboration</h3>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Use Autoload for Shared Systems</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Game managers</li>
+<li class="whitespace-normal break-words">Audio systems</li>
+<li class="whitespace-normal break-words">Save/load functionality</li>
+<li class="whitespace-normal break-words">Global settings</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Implement Clear APIs</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Use signals for communication between systems</li>
+<li class="whitespace-normal break-words">Create documented interfaces for complex systems</li>
+<li class="whitespace-normal break-words">Avoid tight coupling between components</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Code Style Consistency</strong>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Agree on formatting standards</li>
+<li class="whitespace-normal break-words">Use consistent naming conventions</li>
+<li class="whitespace-normal break-words">Comment complex logic thoroughly</li>
+</ul>
+</li>
+</ol>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Communication and Project Management</h2>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Essential Communication Channels</h3>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Real-time Chat</strong> (Discord, Slack)
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Quick questions and updates</li>
+<li class="whitespace-normal break-words">Screen sharing for problem-solving</li>
+<li class="whitespace-normal break-words">Voice calls for complex discussions</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Project Management</strong> (Trello, Notion, GitHub Issues)
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Task assignment and tracking</li>
+<li class="whitespace-normal break-words">Feature planning and roadmaps</li>
+<li class="whitespace-normal break-words">Bug reporting and tracking</li>
+</ul>
+</li>
+<li class="whitespace-normal break-words"><strong>Documentation</strong> (Wiki, Shared Docs)
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Code documentation</li>
+<li class="whitespace-normal break-words">Design documents</li>
+<li class="whitespace-normal break-words">Asset guidelines and style guides</li>
+</ul>
+</li>
+</ol>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Meeting Rhythms</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Daily standups</strong>: Quick progress updates</li>
+<li class="whitespace-normal break-words"><strong>Weekly planning</strong>: Feature planning and task assignment</li>
+<li class="whitespace-normal break-words"><strong>Sprint reviews</strong>: Demo progress and gather feedback</li>
+<li class="whitespace-normal break-words"><strong>Retrospectives</strong>: Discuss what's working and what isn't</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Handling Merge Conflicts</h2>
+<p class="whitespace-normal break-words">Even with the best practices, conflicts will occasionally occur. Here's how to handle them:</p>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Prevention</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Communicate about what you're working on</li>
+<li class="whitespace-normal break-words">Pull frequently to stay updated</li>
+<li class="whitespace-normal break-words">Keep commits small and focused</li>
+<li class="whitespace-normal break-words">Use feature branches for experimental work</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Resolution Process</h3>
+<ol class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Don't panic</strong> – conflicts are normal and solvable</li>
+<li class="whitespace-normal break-words"><strong>Communicate</strong> with your team about the conflicting changes</li>
+<li class="whitespace-normal break-words"><strong>Use merge tools</strong> to visualize differences</li>
+<li class="whitespace-normal break-words"><strong>Test thoroughly</strong> after resolving conflicts</li>
+<li class="whitespace-normal break-words"><strong>Document</strong> any breaking changes</li>
+</ol>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Godot-Specific Conflict Tips</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">.tscn</code> files can be complex to merge manually</li>
+<li class="whitespace-normal break-words">Use Godot's "Reload Current Project" after resolving conflicts</li>
+<li class="whitespace-normal break-words">Test scene functionality after merging</li>
+<li class="whitespace-normal break-words">Consider redesigning if conflicts occur frequently</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Tools and Resources</h2>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Essential Tools</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Git client</strong>: GitKraken, SourceTree, or command line</li>
+<li class="whitespace-normal break-words"><strong>Code editor</strong>: VS Code with Godot extensions</li>
+<li class="whitespace-normal break-words"><strong>Communication</strong>: Discord, Slack, or Microsoft Teams</li>
+<li class="whitespace-normal break-words"><strong>Project management</strong>: Trello, Notion, or GitHub Projects</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Godot-Specific Resources</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Godot documentation</strong>: Official collaboration guidelines</li>
+<li class="whitespace-normal break-words"><strong>Community forums</strong>: GodotDevelopers Discord, Reddit r/godot</li>
+<li class="whitespace-normal break-words"><strong>Asset libraries</strong>: Shared asset repositories</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Advanced Collaboration Techniques</h2>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Continuous Integration</h3>
+<p class="whitespace-normal break-words">Set up automated testing and builds:</p>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Automatic testing when code is pushed</li>
+<li class="whitespace-normal break-words">Automated builds for different platforms</li>
+<li class="whitespace-normal break-words">Integration with your Git repository</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Asset Pipeline</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Establish asset creation guidelines</li>
+<li class="whitespace-normal break-words">Use consistent import settings</li>
+<li class="whitespace-normal break-words">Create asset validation scripts</li>
+<li class="whitespace-normal break-words">Implement asset version control</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Code Review Process</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words">Require reviews for all major changes</li>
+<li class="whitespace-normal break-words">Use pull/merge requests for discussion</li>
+<li class="whitespace-normal break-words">Establish coding standards and enforce them</li>
+<li class="whitespace-normal break-words">Create templates for common patterns</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Common Pitfalls and How to Avoid Them</h2>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">The "It Works on My Machine" Problem</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Solution</strong>: Use consistent development environments</li>
+<li class="whitespace-normal break-words">Consider using containers or virtual machines</li>
+<li class="whitespace-normal break-words">Document all dependencies and setup steps</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Overwriting Each Other's Work</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Solution</strong>: Always pull before starting work</li>
+<li class="whitespace-normal break-words">Use feature branches for isolated development</li>
+<li class="whitespace-normal break-words">Communicate about shared files</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Breaking the Build</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Solution</strong>: Test before committing</li>
+<li class="whitespace-normal break-words">Use automated testing where possible</li>
+<li class="whitespace-normal break-words">Keep main branch stable at all times</li>
+</ul>
+<h3 class="text-lg font-bold text-text-100 mt-1 -mb-1.5">Asset Conflicts</h3>
+<ul class="[&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc space-y-1.5 pl-7">
+<li class="whitespace-normal break-words"><strong>Solution</strong>: Establish clear asset ownership</li>
+<li class="whitespace-normal break-words">Use consistent import settings</li>
+<li class="whitespace-normal break-words">Version control all project settings</li>
+</ul>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Conclusion</h2>
+<p class="whitespace-normal break-words">Successful collaboration on Godot projects requires more than just technical setup – it requires good communication, clear processes, and mutual respect among team members. Start with the basics (Git, project structure, communication), then gradually adopt more advanced practices as your team grows and your projects become more complex.</p>
+<p class="whitespace-normal break-words">Remember that every team is different, and what works for one group might not work for another. Don't be afraid to experiment with different approaches and adjust your workflow based on what you learn. The most important thing is to establish processes early and stick to them consistently.</p>
+<p class="whitespace-normal break-words">With these practices in place, you'll be able to focus on what really matters: creating amazing games together.</p>
+<h2 class="text-xl font-bold text-text-100 mt-1 -mb-0.5">Quick Reference Checklist</h2>
+<p class="whitespace-normal break-words"><strong>Before Starting:</strong></p>
+<p><input disabled="disabled" type="checkbox"> Set up Git repository with proper .gitignore<br><input disabled="disabled" type="checkbox"> Establish project folder structure<br><input disabled="disabled" type="checkbox"> Set up communication channels<br><input disabled="disabled" type="checkbox"> Agree on coding standards and conventions</p>
+<p class="whitespace-normal break-words"><strong>Daily Workflow:</strong></p>
+<p><input disabled="disabled" type="checkbox"> Pull latest changes before starting work<br><input disabled="disabled" type="checkbox"> Commit changes frequently with descriptive messages<br><input disabled="disabled" type="checkbox"> Push changes regularly<br><input disabled="disabled" type="checkbox"> Communicate about current work</p>
+<p class="whitespace-normal break-words"><strong>Weekly Maintenance:</strong></p>
+<p><input disabled="disabled" type="checkbox"> Review and merge feature branches<br><input disabled="disabled" type="checkbox"> Update documentation<br><input disabled="disabled" type="checkbox"> Plan upcoming features<br><input disabled="disabled" type="checkbox"> Address any technical debt</p>
+<p class="whitespace-normal break-words">By following this guide, you'll be well-equipped to collaborate effectively on your Godot projects and create something amazing together!</p><!----></div>
