@@ -1,6 +1,9 @@
 # =============================
 # Godot + Game Jam .gitignore
 # =============================
+# NOTE: Les motifs comme `.import/` ou `.godot/` sans slash initial s'appliquent à
+# TOUT dossier nommé ainsi, à n'importe quel niveau (récursivement). Pas besoin de `**/.import/`.
+# Pour des sous-projets multiples Godot, ces règles restent valides.
 # Ignorer les dossiers générés et temporaires de Godot
 .godot/
 .import/
@@ -8,9 +11,14 @@
 # Presets d'export (générés, régénérables) – commenter si vous voulez les versionner
 export_presets.cfg
 
-# Fichiers de traduction intermédiaires
+# (Option) Si vous avez plusieurs sous-projets Godot imbriqués, vous pouvez ajouter :
+# **/.godot/
+# **/.import/
+
+# Fichiers de traduction intermédiaires (optionnel)
 *.translation
-*.import
+# IMPORTANT: Ne pas ignorer les fichiers .import (ils contiennent les réglages d'import des assets Godot 4)
+# Retrait de la règle `*.import` pour conserver la configuration d'import.
 
 # Mono / C# (si utilisé)
 .mono/
@@ -25,6 +33,9 @@ exports/
 *.dmg
 *.app
 *.apk
+
+# Fichiers temporaires supplémentaires
+.tmp/
 
 # Éditeurs / IDE
 .vscode/
