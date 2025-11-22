@@ -110,6 +110,45 @@ git lfs track "*.wav"
 
 ---
 
+## 2.5. Paramètres du projet (`project.godot`)
+
+Le fichier `project.godot` contient la quasi-totalité de la configuration globale du projet (Input Map, Rendering, Audio, Physics, Langues, Autoloads, etc.). Toute modification via le menu Godot: Project → Project Settings y ajoute ou modifie des lignes.
+
+### Pourquoi c'est important
+* C'est un fichier texte versionné; des changements non coordonnés peuvent créer des conflits ou des régressions (suppression d'un Input, d'un Autoload, changement de backend de rendu, etc.).
+* Les diffs peuvent être volumineux si plusieurs sections sont ajustées en même temps.
+
+### Bonnes pratiques de modification
+1. Limiter les modifications à une catégorie à la fois (ex: Input Map, puis commit séparé pour Rendering).
+2. Faire un commit dédié avec un message clair, par exemple:
+   * `chore: ajout actions input Jump/Attack`
+   * `feat: ajout autoload GameState`
+3. Éviter de "tester" des options en les changeant puis rechangeant avant un commit — cela génère du bruit dans l'historique.
+4. Ne pas supprimer des entrées Input existantes sans validation d'équipe (risque de casser des scripts existants).
+5. Lors d'ajout d'Autoloads (Singletons), documenter leur rôle dans une note (README ou wiki interne).
+
+### Gestion des conflits sur `project.godot`
+1. Ouvrir le diff et repérer les sections modifiées (les blocs sont souvent préfixés par `[category]`).
+2. Concilier manuellement les listes (ex: actions d'input) en conservant toutes les entrées pertinentes.
+3. Vérifier après merge dans Godot: recharger le projet, tester les inputs / autoloads concernés.
+4. Si un conflit est complexe, décider d'une version de référence (ex: celle de la branche principale) et ré-appliquer les ajouts manquants.
+
+### Astuces réduction de bruit
+* Ajouter toutes les nouvelles actions Input avant de régler leurs paramètres secondaires (deadzone, etc.).
+* Grouper les autoloads liés (ex: `AudioManager`, `GameState`) dans un seul commit.
+* Éviter les modifications multiples de Render Settings tôt dans le projet.
+
+### Checklist avant commit `project.godot`
+- [ ] Les changements correspondent à un seul objectif
+- [ ] Pas d'entrée supprimée par erreur
+- [ ] Autoloads testés au démarrage
+- [ ] Input actions déclenchables en jeu
+- [ ] Message de commit explicite
+
+En résumé: modifier `project.godot` avec parcimonie et intention pour réduire les risques de conflits et préserver un historique lisible.
+
+---
+
 # 3. 🗂️ Organisation du projet
 
 ## 3.1. Structure recommandée
