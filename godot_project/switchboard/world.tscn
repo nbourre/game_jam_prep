@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://4sr1b5f4b75b"]
+
+[ext_resource type="Script" uid="uid://0uh63kngfkf4" path="res://scripts/world.gd" id="1_f3sb7"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_f3sb7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -68.0
+offset_right = 61.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btnPeter" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Peter's world"
+
+[node name="btnHomer" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Homer's world"
+
+[node name="btnRick" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Rick's world"
+
+[node name="btnBob" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Bob's world"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/btnPeter" to="." method="_on_btn_peter_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/btnHomer" to="." method="_on_btn_homer_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/btnRick" to="." method="_on_btn_rick_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/btnBob" to="." method="_on_btn_bob_pressed"]
